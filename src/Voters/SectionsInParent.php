@@ -4,6 +4,7 @@ namespace Sven\ArtisanView\Voters;
 
 use Illuminate\Support\Str;
 use Sven\ArtisanView\Blocks\InlineSection;
+use Sven\ArtisanView\Blocks\ModelForm;
 use Sven\ArtisanView\Blocks\Section;
 use Sven\ArtisanView\BlockStack;
 use Symfony\Component\Console\Input\InputInterface;
@@ -37,9 +38,11 @@ class SectionsInParent implements Voter
     {
         foreach ((array) $input->getOption('section') as $section) {
             if (Str::contains($section, ':')) {
-                list($name, $title) = explode(':', $section);
+                list($name, $value) = explode(':', $section);
 
-                $blockStack->add(new InlineSection($name, $title));
+                ($name == 'form')
+                    ? $blockStack->add(new ModelForm($name, $value))
+                    : $blockStack->add(new InlineSection($name, $value));
             } else {
                 $blockStack->add(new Section($section));
             }
