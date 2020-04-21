@@ -1,6 +1,7 @@
 ![artisan-view](https://cloud.githubusercontent.com/assets/11269635/14457826/a3bde82a-00ad-11e6-8161-0c218937156a.jpg)
 
 # Artisan View
+
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
 [![Software License][ico-license]](LICENSE.md)
@@ -12,6 +13,7 @@ project. Generate blade files that extend other views, scaffold out sections
 to add to those templates, and more. All from the command line we know and love!
 
 ## Index
+
 - [Installation](#installation)
   - [Downloading](#downloading)
   - [Registering the service provider](#registering-the-service-provider)
@@ -25,9 +27,11 @@ to add to those templates, and more. All from the command line we know and love!
 - [License](#license)
 
 ## Installation
+
 You'll have to follow a couple of simple steps to install this package.
 
 ### Downloading
+
 Via [composer](http://getcomposer.org):
 
 ```bash
@@ -35,7 +39,8 @@ $ composer require sven/artisan-view --dev
 ```
 
 ### Registering the service provider
-If you're using Laravel 5.5 or above, you can skip this step. The service provider will have already been 
+
+If you're using Laravel 5.5 or above, you can skip this step. The service provider will have already been
 registered thanks to auto-discovery.
 
 Otherwise, register `Sven\ArtisanView\ServiceProvider::class` manually in your `AppServiceProvider`'s
@@ -46,16 +51,19 @@ public function register()
 {
     if ($this->app->environment() !== 'production') {
         $this->app->register(\Sven\ArtisanView\ServiceProvider::class);
-    }    
+    }
 }
 ```
 
 ## Usage
+
 If you now run `php artisan` you will see two new commands in the list:
+
 - `make:view`
 - `scrap:view`
 
 ### Creating views
+
 ```bash
 # Create a view 'index.blade.php' in the default directory
 $ php artisan make:view index
@@ -68,6 +76,7 @@ $ php artisan make:view index --extension=html
 ```
 
 ### Extending and sections
+
 ```bash
 # Extend an existing view
 $ php artisan make:view index --extends=app
@@ -90,6 +99,7 @@ $ php artisan make:view index --extends=app --with-stacks
 ```
 
 ### REST resources
+
 ```bash
 # Create a resource called 'products'
 $ php artisan make:view products --resource
@@ -99,6 +109,7 @@ $ php artisan make:view products --resource --verb=index --verb=create --verb=ed
 ```
 
 ### Scrapping views
+
 ```bash
 # Remove the view 'index.blade.php'
 $ php artisan scrap:view index
@@ -115,6 +126,7 @@ $ php artisan scrap:view index --force
 ```
 
 ### Scrapping a REST resource
+
 ```bash
 # Remove the resource called 'products'
 $ php artisan scrap:view products --resource
@@ -131,6 +143,7 @@ $ php artisan scrap:view products --resource --verb=create --verb=edit
 ```
 
 ### Mix and match
+
 Of course, all the options work well together like you'd expect. So the following command...
 
 ```bash
@@ -150,11 +163,21 @@ and `products/show.blade.php`:
 @endsection
 ```
 
+### Form Generation for a model
+
+Generate bootstrp form with laravel validation holder for a model fields
+
+```bash
+$ php artisan make:view account/create --extends=ayouts.home --section=pageTitle --section=breadCrumb --section="form:App\User"
+```
+
 ## Contributing
+
 All contributions (in the form on pull requests, issues and feature-requests) are
 welcome. See the [contributors page](../../graphs/contributors) for all contributors.
 
 ## License
+
 `sven/artisan-view` is licenced under the MIT License (MIT). Please see the
 [license file](LICENSE.md) for more information.
 
@@ -163,7 +186,6 @@ welcome. See the [contributors page](../../graphs/contributors) for all contribu
 [ico-downloads]: https://img.shields.io/packagist/dt/sven/artisan-view.svg?style=flat-square
 [ico-circleci]: https://img.shields.io/circleci/project/github/svenluijten/artisan-view.svg?style=flat-square
 [ico-styleci]: https://styleci.io/repos/56054783/shield
-
 [link-packagist]: https://packagist.org/packages/sven/artisan-view
 [link-downloads]: https://packagist.org/packages/sven/artisan-view
 [link-circleci]: https://circleci.com/gh/svenluijten/artisan-view
